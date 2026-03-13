@@ -1,0 +1,1 @@
+# globalsend-gitops-azure
