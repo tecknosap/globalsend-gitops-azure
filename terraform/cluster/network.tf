@@ -5,6 +5,8 @@ resource "azurerm_resource_group" "this" {
 }
 
 
+
+
 resource "azurerm_virtual_network" "this" {
     name                = var.vnet_name
     address_space       = var.address_space
