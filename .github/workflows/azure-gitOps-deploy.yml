@@ -746,18 +746,30 @@ jobs:
           echo "ARM_SUBSCRIPTION_ID=${{ secrets.DEV_AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
           echo "ARM_USE_OIDC=true" >> $GITHUB_ENV
           
-      # 5️⃣ Setup Terraform
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.6.0
+      # # 5️⃣ Setup Terraform
+      # - name: Setup Terraform
+      #   uses: hashicorp/setup-terraform@v2
+      #   with:
+      #     terraform_version: 1.6.0
 
-      # 6️⃣ Deploy infrastructure with Terraform
-      - name: Terraform Init & Apply
+      # # 6️⃣ Deploy infrastructure with Terraform
+      # - name: Terraform Init & Apply
+      #   run: |
+      #     cd terraform
+      #     terraform init
+      #     terraform apply -auto-approve
+
+            # 5️⃣ Setup Terragrunt
+      - name: Setup Terragrunt
+        uses: gruntwork-io/terragrunt-action@v3
+        with:
+            tg_version: 0.42.9
+
+      # 6️⃣ Deploy infrastructure with Terragrunt
+      - name: Terragrunt Apply
         run: |
-          cd terraform
-          terraform init
-          terraform apply -auto-approve
+          cd terragrunt/environments/dev/cluster
+          terragrunt run-all apply --auto-approve
           
       # 7️⃣ Wait for AKS cluster to be ready
       - name: Wait for AKS readiness
