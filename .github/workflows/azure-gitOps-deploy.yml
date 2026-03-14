@@ -763,12 +763,20 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-           terraform_version: 1.6.6
+          terraform_version: 1.6.6
 
-      # 6️⃣ Deploy infrastructure with Terragrunt
-      - name: Terragrunt Apply
-        working-directory: terragrunt/environments/dev/cluster
-        run: terragrunt run-all apply --auto-approve
+      # 4️⃣ Install Terragrunt
+      - name: Setup Terragrunt
+        run: |
+          curl -Lo terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v0.42.9/terragrunt_linux_amd64
+          chmod +x terragrunt
+          sudo mv terragrunt /usr/local/bin/
+          terragrunt --version
+
+        # 5️⃣ Deploy infrastructure with Terragrunt
+        - name: Terragrunt Apply
+          working-directory: terragrunt/environments/dev/cluster
+          run: terragrunt run-all apply --auto-approve
           
       # 7️⃣ Wait for AKS cluster to be ready
       - name: Wait for AKS readiness
