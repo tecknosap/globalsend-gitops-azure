@@ -49,52 +49,15 @@ jobs:
           terraform_version: 1.6.0
           terraform_wrapper: false
 
-      # 5️⃣b Setup Terragrunt with retry logic
+      # 5️⃣b Setup Terragrunt (bulletproof method)
       - name: Setup Terragrunt
         run: |
           TERRAGRUNT_VERSION="v0.55.1"
-          mkdir -p bin
-          
-          echo "Downloading Terragrunt version $TERRAGRUNT_VERSION..."
-          
-          # Download with retry logic and verbose output
-          for i in {1..3}; do
-            echo "Attempt $i to download Terragrunt..."
-            if wget -q --show-progress --timeout=30 --tries=2 -O bin/terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/$TERRAGRUNT_VERSION/terragrunt_linux_amd64"; then
-              echo "Download successful on attempt $i"
-              break
-            else
-              if [ $i -eq 3 ]; then
-                echo "Failed to download Terragrunt after 3 attempts"
-                exit 1
-              fi
-              echo "Download failed, retrying in 5 seconds..."
-              sleep 5
-            fi
-          done
-          
-          # Verify download completed
-          if [ ! -f bin/terragrunt ]; then
-            echo "Error: Terragrunt binary not found after download"
-            exit 1
-          fi
-          
-          # Check file size to ensure it's complete
-          FILE_SIZE=$(wc -c < bin/terragrunt)
-          EXPECTED_SIZE=68899859  # Approximate size in bytes
-          
-          if [ $FILE_SIZE -lt 60000000 ]; then
-            echo "Error: Downloaded file is too small ($FILE_SIZE bytes), likely incomplete"
-            exit 1
-          fi
-          
-          chmod +x bin/terragrunt
-          echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
-          
-          # Verify installation
-          echo "Terragrunt installation complete:"
+          echo "Installing Terragrunt version $TERRAGRUNT_VERSION..."
+          sudo wget -q -O /usr/local/bin/terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/$TERRAGRUNT_VERSION/terragrunt_linux_amd64
+          sudo chmod +x /usr/local/bin/terragrunt
+          echo "Terragrunt installed successfully:"
           terragrunt --version
-        shell: bash
 
       # 6️⃣ Deploy infrastructure with Terragrunt
       - name: Terragrunt Apply
