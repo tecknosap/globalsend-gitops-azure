@@ -768,9 +768,8 @@ jobs:
 
       # 6️⃣ Deploy infrastructure with Terragrunt
       - name: Terragrunt Apply
-        run: |
-          cd terragrunt/environments/dev/cluster
-          terragrunt run-all apply --auto-approve
+        working-directory: terragrunt/environments/dev/cluster
+        run: terragrunt run-all apply --auto-approve
           
       # 7️⃣ Wait for AKS cluster to be ready
       - name: Wait for AKS readiness
