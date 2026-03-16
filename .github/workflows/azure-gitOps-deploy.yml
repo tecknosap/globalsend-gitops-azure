@@ -1,45 +1,45 @@
-# name: "Dev Pipeline: Terraform + AKS + ArgoCD"
+name: "Dev Pipeline: Terraform + AKS + ArgoCD"
 
-# on:
-#   push:
-#     branches:
-#       - dev
-#   workflow_dispatch:
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
 
-# permissions:
-#   id-token: write
-#   contents: read
+permissions:
+  id-token: write
+  contents: read
 
-# jobs:
-#   dev-deploy:
-#     runs-on: ubuntu-latest
-#     environment: dev
+jobs:
+  dev-deploy:
+    runs-on: ubuntu-latest
+    environment: dev
 
-#     steps:
-#       # 1️⃣ Checkout code
-#       - name: Checkout code
-#         uses: actions/checkout@v3
+    steps:
+      # 1️⃣ Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-#       # 2️⃣ Debug info
-#       - name: Debug info
-#         run: |
-#           echo "Branch: ${{ github.ref_name }}"
-#           echo "Environment: ${{ github.environment }}"
+      # 2️⃣ Debug info
+      - name: Debug info
+        run: |
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Environment: ${{ github.environment }}"
           
-#       # 3️⃣ Login to Azure using OIDC
-#       - name: Azure Login (OIDC)
-#         uses: azure/login@v1.6.1
-#         with:
-#           client-id: ${{ secrets.DEV_AZURE_CLIENT_ID }}
-#           tenant-id: ${{ secrets.DEV_AZURE_TENANT_ID }}
-#           subscription-id: ${{ secrets.DEV_AZURE_SUBSCRIPTION_ID }}
+      # 3️⃣ Login to Azure using OIDC
+      - name: Azure Login (OIDC)
+        uses: azure/login@v1.6.1
+        with:
+          client-id: ${{ secrets.DEV_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.DEV_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.DEV_AZURE_SUBSCRIPTION_ID }}
 
-#       # 4️⃣ Set Terraform env vars
-#       - name: Terraform OIDC environment variables
-#         run: |
-#           echo "ARM_CLIENT_ID=${{ secrets.DEV_AZURE_CLIENT_ID }}" >> $GITHUB_ENV
-#           echo "ARM_TENANT_ID=${{ secrets.DEV_AZURE_TENANT_ID }}" >> $GITHUB_ENV
-#           echo "ARM_SUBSCRIPTION_ID=${{ secrets.DEV_AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+      # 4️⃣ Set Terraform env vars
+      - name: Terraform OIDC environment variables
+        run: |
+          echo "ARM_CLIENT_ID=${{ secrets.DEV_AZURE_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "ARM_TENANT_ID=${{ secrets.DEV_AZURE_TENANT_ID }}" >> $GITHUB_ENV
+          echo "ARM_SUBSCRIPTION_ID=${{ secrets.DEV_AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
 #           echo "ARM_USE_OIDC=true" >> $GITHUB_ENV
           
 #       # 5️⃣ Setup Terraform
