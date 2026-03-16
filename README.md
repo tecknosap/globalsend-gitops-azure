@@ -29,15 +29,20 @@ Key highlights:
 
 ---
 
-## Architecture
+
 ### Architecture Diagram
-![Architecture Diagram](./assets/globalsend-gitops.png)
+![Architecture Diagram](./assets/globalsend-gitops.png)    
+
+
 
 ---
-### Our Website
 
+---
+### Fraud Dashboard
 
-![Our website](./assets/froudapps.png)
+![Fraud Dashboard](./assets/froudapps.png)     
+
+---
 
 ---
 
