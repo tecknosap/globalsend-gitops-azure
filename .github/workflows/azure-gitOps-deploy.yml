@@ -40,14 +40,14 @@ jobs:
           echo "ARM_CLIENT_ID=${{ secrets.DEV_AZURE_CLIENT_ID }}" >> $GITHUB_ENV
           echo "ARM_TENANT_ID=${{ secrets.DEV_AZURE_TENANT_ID }}" >> $GITHUB_ENV
           echo "ARM_SUBSCRIPTION_ID=${{ secrets.DEV_AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
-#           echo "ARM_USE_OIDC=true" >> $GITHUB_ENV
+          echo "ARM_USE_OIDC=true" >> $GITHUB_ENV
           
-#       # 5️⃣ Setup Terraform
-#       - name: Setup Terraform
-#         uses: hashicorp/setup-terraform@v2
-#         with:
-#           terraform_version: 1.6.0
-#           terraform_wrapper: false
+      # 5️⃣ Setup Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.0
+          terraform_wrapper: false
 
 #       # 5️⃣b Setup Terragrunt (bulletproof method)
 #       - name: Setup Terragrunt
