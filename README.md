@@ -30,31 +30,16 @@ Key highlights:
 ---
 
 ## Architecture
+### Architecture Diagram
+![Architecture Diagram](./assets/globalsend-gitops.png)
 
-```text
-Developer Push
-      │
-      ▼
-GitHub Actions (CI/CD)
-      │
-      ▼
-OIDC Authentication to Azure
-      │
-      ▼
-Terraform / Terragrunt
-      │
-      ▼
-Azure Kubernetes Service (AKS)
-      │
-      ▼
-ArgoCD GitOps Controller
-      │
-      ▼
-Application Deployment
-      │
-      ▼
-Prometheus + Grafana Monitoring
-````
+---
+### Our Website
+
+
+![Our website](./assets/froudapps.png)
+
+---
 
 **Components:**
 
