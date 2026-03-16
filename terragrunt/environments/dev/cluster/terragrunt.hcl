@@ -17,9 +17,9 @@ aks_dns_prefix      = "aksdev"
 
 node_pool_name      = "agentpool"
 node_count          = 3
-node_vm_size        = "standard_a2_v2"
+node_vm_size        =  "Standard_DS2_v2"
 
-# AKS network profile   
+# AKS network profile
 
 network_profile = {
 network_plugin      = "azure"
@@ -39,3 +39,5 @@ address_space         = ["10.2.0.0/16"]
 subnet_name           = "gocloud-dev-subnet"
 subnet_address_prefix = "10.2.0.0/24"
 }
+
+
