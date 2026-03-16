@@ -2,8 +2,8 @@
 
 resource "azurerm_kubernetes_cluster" "this" {
     name                = var.cluster_name
-    location            = var.location
-    resource_group_name = var.resource_group_name
+    location            = azurerm_resource_group.this.location
+    resource_group_name = azurerm_resource_group.this.name
     dns_prefix         = var.aks_dns_prefix
 
     default_node_pool {

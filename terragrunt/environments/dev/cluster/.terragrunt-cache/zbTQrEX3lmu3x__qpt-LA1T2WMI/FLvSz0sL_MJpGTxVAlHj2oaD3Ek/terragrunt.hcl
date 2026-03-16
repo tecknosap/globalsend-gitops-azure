@@ -17,7 +17,7 @@ aks_dns_prefix      = "aksdev"
 
 node_pool_name      = "agentpool"
 node_count          = 3
-node_vm_size        =  "Standard_DS2_v2"
+node_vm_size        = "standard_a2_v2"
 
 # AKS network profile
 
