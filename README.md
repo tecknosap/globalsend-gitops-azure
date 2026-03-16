@@ -1,11 +1,12 @@
 
 # GlobalSend GitOps Platform
 
-Production-grade GitOps platform on **Azure Kubernetes Service (AKS)** using **Terraform, GitHub Actions, and ArgoCD**.  
+Production-grade GitOps platform on **Azure Kubernetes Service (AKS)** using **Terraform, Terragrunt, GitHub Actions, and ArgoCD**.  
 This project demonstrates modern DevOps practices: Infrastructure as Code, CI/CD automation, and GitOps-driven deployment.
 
-[![Dev Pipeline](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/dev-pipeline.yml/badge.svg)](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/dev-pipeline.yml)
+[![Globalsend gitOps Pipeline](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/dev-pipeline.yml/badge.svg)](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/dev-pipeline.yml)
 
+![Terragrunt](https://img.shields.io/badge/IaC-Terragrunt-purple)
 ![Terraform](https://img.shields.io/badge/IaC-Terraform-purple)
 ![Kubernetes](https://img.shields.io/badge/Platform-Kubernetes-blue)
 ![GitOps](https://img.shields.io/badge/Delivery-GitOps-green)
@@ -28,20 +29,13 @@ Key highlights:
 
 ---
 
-
 ### Architecture Diagram
 ![Architecture Diagram](./assets/globalsend-gitops.png)    
 
-
-
 ---
 
----
 ### Fraud Dashboard
-
 ![Fraud Dashboard](./assets/froudapps.png)     
-
----
 
 ---
 
@@ -97,7 +91,7 @@ Key highlights:
 │   └── application.yaml
 └── helm/
     └── globalsend/
-```
+````
 
 ---
 
@@ -106,19 +100,21 @@ Key highlights:
 **Workflow:**
 
 1. Developer pushes code to the `dev` branch
-2. GitHub Actions triggers pipeline
+2. GitHub Actions triggers the pipeline
 3. OIDC authentication to Azure
-4. Terraform provisions infrastructure
+4. **Terraform + Terragrunt provision infrastructure**
 5. AKS cluster is deployed or updated
 6. ArgoCD installed via Helm
 7. ArgoCD syncs repository manifests
 8. Application deployed automatically
 
+> Minor update: pipeline now explicitly mentions **Terragrunt + Terraform** for environment-aware IaC provisioning.
+
 ---
 
 ## Deployment Workflow
 
-**Infrastructure Provisioning:** Terraform provisions resource groups, VNet/subnets, AKS cluster, and storage backend.
+**Infrastructure Provisioning:** Terraform and Terragrunt provision resource groups, VNet/subnets, AKS cluster, and storage backend.
 
 **GitOps Controller Setup:** ArgoCD installed via Helm with auto-sync and self-healing enabled.
 
@@ -207,4 +203,3 @@ GitHub: [https://github.com/tecknosap](https://github.com/tecknosap)
 MIT License © 2026 GlobalSend
 
 ```
-
