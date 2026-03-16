@@ -1,5 +1,4 @@
 
-````markdown
 # GlobalSend GitOps Platform
 
 Production-grade GitOps platform on **Azure Kubernetes Service (AKS)** using **Terraform, GitHub Actions, and ArgoCD**.  
