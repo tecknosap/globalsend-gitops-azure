@@ -5,7 +5,7 @@ Production-grade GitOps platform on **Azure Kubernetes Service (AKS)** using **T
  
 This project demonstrates modern DevOps practices: Infrastructure as Code, CI/CD automation, and GitOps-driven deployment.
 
-[![Globalsend gitOps Pipeline](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/dev-pipeline.yml/badge.svg)](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/dev-pipeline.yml)
+[![Globalsend GitOps Pipeline](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/azure-gitOps-deploy.yml/badge.svg)](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/azure-gitOps-deploy.yml)
 
 ![Terragrunt](https://img.shields.io/badge/IaC-Terragrunt-purple)
 ![Terraform](https://img.shields.io/badge/IaC-Terraform-purple)
@@ -82,22 +82,21 @@ Key highlights:
 
 ```text
 .
-├── .github/workflows/
-│   └── dev-pipeline.yml
+├── .github/
+│   └── workflows/             # CI/CD GitHub Actions workflows (e.g., pipelines for deployment)
+├── argocd/                     # ArgoCD application manifests for GitOps deployments
+├── assets/                     # Miscellaneous static files or scripts used in deployment or tooling
+├── helm/
+│   └── globalsend/             # Helm chart(s) for deploying the Globalsend application
 ├── terraform/
-│   └── cluster/
-│       ├── main.tf
-│       ├── network.tf
-│       └── variables.tf
+│   └── cluster/                # Terraform code for provisioning Azure infrastructure (networking, AKS, etc.)
 ├── terragrunt/
-│   └── environments/
-│       └── dev/
-│           └── cluster/
-│               └── terragrunt.hcl
-├── argocd/
-│   └── application.yaml
-└── helm/
-    └── globalsend/
+│   └── environments/           # Terragrunt environment configurations (dev, prod, etc.) referencing Terraform modules
+├── .gitignore                  # Files/folders to ignore in Git
+├── LICENSE                     # Repository license
+├── README.md                   # Project overview, setup instructions, documentation
+└── root.hcl                     # Root Terragrunt configuration to orchestrate environments/modules
+
 ````
 
 ---
