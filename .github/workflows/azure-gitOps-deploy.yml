@@ -1,5 +1,5 @@
-name: Dev Pipeline — AKS + Terraform + ArgoCD
-
+name: Globalsend Pipeline — AKS + Terraform + ArgoCD
+#
 on:
   push:
     branches: [dev]
