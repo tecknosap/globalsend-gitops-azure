@@ -1,7 +1,8 @@
 
 # GlobalSend GitOps Platform
 
-Production-grade GitOps platform on **Azure Kubernetes Service (AKS)** using **Terraform, Terragrunt, GitHub Actions, and ArgoCD**.  
+Production-grade GitOps platform on **Azure Kubernetes Service (AKS)** using **Terraform, Terragrunt, GitHub Actions, and ArgoCD**. 
+ 
 This project demonstrates modern DevOps practices: Infrastructure as Code, CI/CD automation, and GitOps-driven deployment.
 
 [![Globalsend gitOps Pipeline](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/dev-pipeline.yml/badge.svg)](https://github.com/tecknosap/globalsend-gitops-azure/actions/workflows/dev-pipeline.yml)
