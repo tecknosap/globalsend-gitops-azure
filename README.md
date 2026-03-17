@@ -39,6 +39,12 @@ Key highlights:
 
 ---
 
+
+### Fraud Dashboard Live
+![Fraud Dashboard](./assets/gitops1.gif)     
+
+---
+
 **Components:**
 
 | Component                | Purpose                            |
