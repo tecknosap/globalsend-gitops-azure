@@ -177,11 +177,13 @@ git clone https://github.com/tecknosap/globalsend-gitops-azure.git
 cd globalsend-gitops-azure
 
 cd terraform/cluster
-terraform init
-terraform plan
+terragrunt init
+terragrunt plan
+terragrunt apply -auto-approve
 
 git checkout dev
 git push origin dev
+
 ```
 
 ---
