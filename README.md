@@ -177,7 +177,7 @@ kubectl get svc -n globalsend-site
 git clone https://github.com/tecknosap/globalsend-gitops-azure.git
 cd globalsend-gitops-azure
 
-cd terraform/cluster
+cd terragrunt/environments/dev/cluster
 terragrunt init
 terragrunt plan
 terragrunt apply -auto-approve
