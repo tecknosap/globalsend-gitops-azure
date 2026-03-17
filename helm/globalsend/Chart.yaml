@@ -1,3 +1,6 @@
+# =========================================================
+# Helm Chart Metadata
+# =========================================================
 apiVersion: v2
 name: globalsend-site
 description: Helm chart for tecknosap/globalsend-site Docker image

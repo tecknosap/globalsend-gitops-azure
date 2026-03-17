@@ -1,3 +1,6 @@
+# =========================================================
+# ArgoCD Application for globalsend-site
+# =========================================================
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -8,7 +11,7 @@ spec:
   source:
     repoURL: 'https://github.com/tecknosap/globalsend-k8s-azure'
     targetRevision: main
-    path: helm/globalsend      # <-- corrected path
+    path: helm/globalsend     
     helm:
       valueFiles:
         - values.yaml

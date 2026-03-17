@@ -1,8 +1,6 @@
-
-
-########################
-# Create monitoring namespace
-########################
+# =========================================================
+# ☸️ Create Monitoring Namespace
+# =========================================================
 resource "kubernetes_namespace" "monitoring" {
   metadata {
     name = "monitoring"
@@ -11,9 +9,9 @@ resource "kubernetes_namespace" "monitoring" {
   depends_on = [azurerm_kubernetes_cluster.this]
 }
 
-########################
-# Deploy Prometheus + Grafana + Alertmanager
-########################
+# =========================================================
+# 🛠️ Deploy Prometheus, Grafana, and Alertmanager via Helm
+# =========================================================
 resource "helm_release" "prometheus" {
   name      = "prometheus"
   namespace = kubernetes_namespace.monitoring.metadata[0].name
@@ -27,8 +25,8 @@ resource "helm_release" "prometheus" {
       prometheus = {
         prometheusSpec = {
           serviceMonitorSelectorNilUsesHelmValues = false
-          serviceMonitorSelector = {}
-          podMonitorSelector     = {}
+          serviceMonitorSelector                  = {}
+          podMonitorSelector                      = {}
           service = { type = "NodePort" }
         }
       }
@@ -36,7 +34,7 @@ resource "helm_release" "prometheus" {
         enabled       = true
         adminUser     = "admin"
         adminPassword = "ChangeMe123!"
-        service = { type = "NodePort" }
+        service       = { type = "NodePort" }
       }
       alertmanager = { enabled = true }
     })
@@ -45,9 +43,9 @@ resource "helm_release" "prometheus" {
   depends_on = [kubernetes_namespace.monitoring]
 }
 
-########################
-# Get Prometheus service
-########################
+# =========================================================
+# 🔍 Fetch Prometheus Service
+# =========================================================
 data "kubernetes_service" "prometheus" {
   metadata {
     name      = "prometheus-kube-prometheus-prometheus"
@@ -56,4 +54,3 @@ data "kubernetes_service" "prometheus" {
 
   depends_on = [helm_release.prometheus]
 }
-

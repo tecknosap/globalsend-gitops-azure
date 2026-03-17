@@ -1,29 +1,42 @@
-
-
+# =========================================================
+# ☸️ Azure Kubernetes Service (AKS) Cluster
+# =========================================================
 resource "azurerm_kubernetes_cluster" "this" {
-    name                = var.cluster_name
-    location            = azurerm_resource_group.this.location
-    resource_group_name = azurerm_resource_group.this.name
-    dns_prefix         = var.aks_dns_prefix
+  name                = var.cluster_name
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+  dns_prefix          = var.aks_dns_prefix
 
-    default_node_pool {
-        name       = var.node_pool_name
-        node_count = var.node_count
-        vm_size    = var.node_vm_size
-        vnet_subnet_id = azurerm_subnet.this.id 
-    }
+  # =========================================================
+  # Node Pool Configuration
+  # =========================================================
+  default_node_pool {
+    name           = var.node_pool_name
+    node_count     = var.node_count
+    vm_size        = var.node_vm_size
+    vnet_subnet_id = azurerm_subnet.this.id
+  }
 
-    network_profile {
-        network_plugin     = var.network_profile.network_plugin
-        network_policy     = var.network_profile.network_policy
-        service_cidr       = var.network_profile.service_cidr
-        dns_service_ip     = var.network_profile.dns_service_ip
-       # docker_bridge_cidr = var.network_profile.docker_bridge_cidr
-    }
+  # =========================================================
+  # Network Profile
+  # =========================================================
+  network_profile {
+    network_plugin = var.network_profile.network_plugin
+    network_policy = var.network_profile.network_policy
+    service_cidr   = var.network_profile.service_cidr
+    dns_service_ip = var.network_profile.dns_service_ip
+    # docker_bridge_cidr = var.network_profile.docker_bridge_cidr
+  }
 
-      identity {
+  # =========================================================
+  # Managed Identity
+  # =========================================================
+  identity {
     type = "SystemAssigned"
   }
+
+  # =========================================================
+  # Node Resource Group
+  # =========================================================
   node_resource_group = "aks-nodes-${var.resource_group_name}"
 }
-

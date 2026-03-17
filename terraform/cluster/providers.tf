@@ -1,3 +1,6 @@
+# =========================================================
+# ⚡ Terraform Configuration
+# =========================================================
 terraform {
   required_version = ">= 1.5.0"
 
@@ -17,13 +20,18 @@ terraform {
   }
 }
 
-# Azure provider
+# =========================================================
+# ☁️ Azure Provider
+# =========================================================
 provider "azurerm" {
   features {}
   subscription_id = var.subscription_id
 }
 
-# Kubernetes provider for AKS - uses the AKS cluster you just created
+# =========================================================
+# ☸️ Kubernetes Provider (AKS)
+# Uses credentials from the AKS cluster created above
+# =========================================================
 provider "kubernetes" {
   host                   = azurerm_kubernetes_cluster.this.kube_config[0].host
   client_certificate     = base64decode(azurerm_kubernetes_cluster.this.kube_config[0].client_certificate)
@@ -31,7 +39,10 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.this.kube_config[0].cluster_ca_certificate)
 }
 
-# Helm provider for AKS
+# =========================================================
+# 🛠️ Helm Provider (AKS)
+# Uses the same AKS cluster credentials as Kubernetes provider
+# =========================================================
 provider "helm" {
   kubernetes {
     host                   = azurerm_kubernetes_cluster.this.kube_config[0].host

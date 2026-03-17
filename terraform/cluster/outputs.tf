@@ -1,21 +1,28 @@
-# cluster outputs
-
+# =========================================================
+# ☸️ AKS Cluster Outputs
+# =========================================================
 
 output "aks_cluster_name" {
-  value = azurerm_kubernetes_cluster.this.name
+  description = "Name of the AKS cluster."
+  value       = azurerm_kubernetes_cluster.this.name
 }
 
 output "aks_cluster_id" {
-  value = azurerm_kubernetes_cluster.this.id
+  description = "Resource ID of the AKS cluster."
+  value       = azurerm_kubernetes_cluster.this.id
 }
 
 output "kube_config" {
-  value     = azurerm_kubernetes_cluster.this.kube_config_raw
-  sensitive = true
+  description = "Raw kubeconfig content for the AKS cluster (sensitive)."
+  value       = azurerm_kubernetes_cluster.this.kube_config_raw
+  sensitive   = true
 }
 
-# network outputs
+# =========================================================
+# 🌐 Networking Outputs
+# =========================================================
+
 output "network_id" {
-  value = azurerm_virtual_network.this.id
+  description = "Resource ID of the virtual network."
+  value       = azurerm_virtual_network.this.id
 }
-
