@@ -31,7 +31,7 @@ Key highlights:
 ---
 
 ### Architecture Diagram
-![Architecture Diagram](./assets/globalsend-gitops.png)    
+![Architecture Diagram](./assets/globalsend-gitops.png)
 
 ---
 
